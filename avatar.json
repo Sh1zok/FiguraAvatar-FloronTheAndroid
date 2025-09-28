@@ -1,7 +1,16 @@
 {
   "name": "FloronTheAndroid",
-  "description": "§f[v0.3.0]",
+  "description": "§f[v0.4.0]",
   "version": "0.1.5",
   "authors": ["Sh1zok"],
-  "color": "#25A000"
+  "color": "#25A000",
+  "autoAnims": ["model.blink"],
+  "autoScripts": [
+    "scripts.libraries.ActionLists",
+    "scripts.libraries.VoiceChatLib",
+    "scripts.libraries.GSAnimBlend",
+    "scripts.libraries.AnimationTags",
+    "scripts.Main",
+    "scripts.ActionWheel"
+  ]
 }
