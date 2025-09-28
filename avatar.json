@@ -10,6 +10,7 @@
     "scripts.libraries.VoiceChatLib",
     "scripts.libraries.GSAnimBlend",
     "scripts.libraries.AnimationTags",
+    "scripts.Pings",
     "scripts.Main",
     "scripts.ActionWheel"
   ]
