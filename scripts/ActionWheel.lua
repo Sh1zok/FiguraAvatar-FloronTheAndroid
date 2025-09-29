@@ -9,13 +9,15 @@ action_wheel:setPage(actionsPage)
 mainPage:newAction()
     :title("Appearance")
     :item("minecraft:leather_chestplate")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.15, 0)
+    :hoverColor(0.25, 0.5, 0.25)
     :onLeftClick(function() action_wheel:setPage(appearancePage) end)
 
 mainPage:newAction()
     :title("Actions")
     :item("minecraft:axolotl_bucket")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.375, 0)
+    :hoverColor(0.25, 0.725, 0.25)
     :onLeftClick(function() action_wheel:setPage(actionsPage) end)
 --#endregion
 
@@ -32,7 +34,8 @@ actionsPage:newAction()
 actionsPage:newActionList()
     :title("Arms")
     :item("minecraft:piston")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.15, 0)
+    :hoverColor(0.25, 0.5, 0.25)
     :actionList({
         [1] = {
             title = "Wave",
@@ -54,7 +57,8 @@ actionsPage:newActionList()
 actionsPage:newActionList()
     :title("Poses")
     :item("minecraft:oak_stairs")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.375, 0)
+    :hoverColor(0.25, 0.725, 0.25)
     :actionList({
         [1] = {
             title = "Resting",
@@ -92,7 +96,8 @@ appearancePage:newAction()
 appearancePage:newActionList()
     :title("Eyes")
     :item("minecraft:ender_eye")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.15, 0)
+    :hoverColor(0.25, 0.5, 0.25)
     :visualSize(9)
     :actionList({
         [1] = {title = "Default", onSelect = function() pings.changeEyesType("default") end},
@@ -110,7 +115,8 @@ appearancePage:newActionList()
 appearancePage:newActionList()
     :title("Mouth")
     :item("minecraft:note_block")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.375, 0)
+    :hoverColor(0.25, 0.725, 0.25)
     :visualSize(9)
     :actionList({
         [1] = {title = "Default", onSelect = function() pings.changeMouthType("default") end},
@@ -121,7 +127,8 @@ appearancePage:newActionList()
 appearancePage:newActionList()
     :title("Outfits")
     :item("minecraft:chainmail_chestplate")
-    :hoverColor(0.25, 0.25, 0.25)
+    :color(0, 0.15, 0)
+    :hoverColor(0.25, 0.5, 0.25)
     :actionList({
         [1] = {title = "Default", onSelect = function() pings.changeOutfit("textures.Outfits.DefaultOutfit") end}
     })
