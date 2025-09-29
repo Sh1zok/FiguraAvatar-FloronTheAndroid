@@ -2,6 +2,8 @@ local outfitModelParts = {
     models.model.root.Center.LeftLeg,
     models.model.root.Center.RightLeg,
     models.model.root.Center.Torso.Body,
+    models.model.root.Center.Torso.Body.Body,
+    models.model.root.Center.Torso.Body.Jacket,
     models.model.root.Center.Torso.LeftArm,
     models.model.root.Center.Torso.RightArm,
     models.model.root.Center.Torso.Neck.Head.Head,
