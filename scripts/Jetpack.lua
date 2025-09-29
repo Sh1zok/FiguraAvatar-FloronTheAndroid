@@ -7,6 +7,7 @@ end
 
 function events.tick()
     if not player:isLoaded() then return end
+    if not chestplateInventorySlot then return end
 
     models.model.root.Center.Torso.Body.Jetpack:setVisible(chestplateInventorySlot.id == "minecraft:elytra")
     animations.model.jetpack:setPlaying(player:getPose() == "FALL_FLYING")
