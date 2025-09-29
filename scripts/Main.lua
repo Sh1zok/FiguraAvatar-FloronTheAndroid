@@ -12,6 +12,8 @@ animations.model.actionWave:setBlendTime(5):addTags("Arms")
 animations.model.actionPointUp:setBlendTime(5):addTags("Arms")
 animations.model.actionHandshake:setBlendTime(5):addTags("Arms")
 animations.model.jetpack:setBlendTime(5)
+animations.model.changeEyes:setPriority(2)
+animations.model.changeMouth:setPriority(2)
 
 
 
@@ -48,7 +50,7 @@ function events.tick()
     if voiceChat.get.smoothHostVoiceVolume < 0.15 then mouthUV = 04 end
     if voiceChat.get.smoothHostVoiceVolume < 0.05 then mouthUV = 00 end
 
-    if mouthUV ~= mouthModelPart:getUVPixels() then mouthModelPart:setUVPixels(0, mouthUV) end
+    if mouthUV ~= mouthModelPart:getUVPixels() then mouthModelPart:setUVPixels(mouthModelPart:getUVPixels()[1], mouthUV) end
 end
 --#endregion
 

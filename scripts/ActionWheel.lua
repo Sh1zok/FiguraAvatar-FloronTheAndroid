@@ -66,7 +66,7 @@ appearancePage:newActionList()
     :title("Eyes")
     :item("minecraft:ender_eye")
     :hoverColor(0.25, 0.25, 0.25)
-    :visualSize(5)
+    :visualSize(9)
     :actionList({
         [1] = {title = "Default", onSelect = function() pings.changeEyesType("default") end},
         [2] = {title = "Fear", onSelect = function() pings.changeEyesType("fear") end},
@@ -78,6 +78,17 @@ appearancePage:newActionList()
         [8] = {title = "Happy", onSelect = function() pings.changeEyesType("happy") end},
         [9] = {title = "Sad", onSelect = function() pings.changeEyesType("sad") end},
         [10] = {title = "Squinted", onSelect = function() pings.changeEyesType("squinted") end},
+    })
+
+appearancePage:newActionList()
+    :title("Mouth")
+    :item("minecraft:note_block")
+    :hoverColor(0.25, 0.25, 0.25)
+    :visualSize(9)
+    :actionList({
+        [1] = {title = "Default", onSelect = function() pings.changeMouthType("default") end},
+        [2] = {title = "Happy", onSelect = function() pings.changeMouthType("happy") end},
+        [3] = {title = "Sad", onSelect = function() pings.changeMouthType("sad") end},
     })
 
 appearancePage:newActionList()

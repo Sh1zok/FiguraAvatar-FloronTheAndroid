@@ -23,6 +23,12 @@ local eyesTypes = {
     ["squinted"] = vec(4, 8),
 }
 
+local mouthTypes = {
+    ["default"] = 0,
+    ["happy"] = 8,
+    ["sad"] = 16,
+}
+
 
 
 function pings.changeOutfit(outfitTexturePath)
@@ -31,8 +37,13 @@ function pings.changeOutfit(outfitTexturePath)
 end
 
 function pings.changeEyesType(typeName)
-    animations.model.changeEyes:setPriority(2):play()
+    animations.model.changeEyes:play()
     models.model.root.Center.Torso.Neck.Head.Display.Eyes:setUVPixels(eyesTypes[typeName])
+end
+
+function pings.changeMouthType(typeName)
+    animations.model.changeMouth:play()
+    models.model.root.Center.Torso.Neck.Head.Display.Mouth:setUVPixels(mouthTypes[typeName], models.model.root.Center.Torso.Neck.Head.Display.Mouth:getUVPixels()[2])
 end
 
 function pings.playAnimation(modelName, animationTag, animationName)
