@@ -5,8 +5,8 @@ vanilla_model.ARMOR:setVisible(false)
 
 models.model.root.Center.Torso.Neck.Head.Display:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0, 1, 0)
 models.model.root.Center.Torso.Neck.Head.Display.Display:setColor(0, 0.25, 0)
-models.model.root.Center.Torso.Jetpack.LeftEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
-models.model.root.Center.Torso.Jetpack.RightEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
+models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
+models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
 
 animations.model.actionWave:setBlendTime(5):addTags("Arms")
 animations.model.actionPointUp:setBlendTime(5):addTags("Arms")

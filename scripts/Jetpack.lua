@@ -8,14 +8,14 @@ end
 function events.tick()
     if not player:isLoaded() then return end
 
-    models.model.root.Center.Torso.Jetpack:setVisible(chestplateInventorySlot.id == "minecraft:elytra")
+    models.model.root.Center.Torso.Body.Jetpack:setVisible(chestplateInventorySlot.id == "minecraft:elytra")
     animations.model.jetpack:setPlaying(player:getPose() == "FALL_FLYING")
 
     local jetTrailScale = 0
     if player:getPose() == "FALL_FLYING" then jetTrailScale = player:getVelocity():length() * 5 end
 
-    if models.model.root.Center.Torso.Jetpack.LeftEngine.Trail:getScale()[2] ~= jetTrailScale then
-        models.model.root.Center.Torso.Jetpack.LeftEngine.Trail:setScale(1, jetTrailScale, 1)
-        models.model.root.Center.Torso.Jetpack.RightEngine.Trail:setScale(1, jetTrailScale, 1)
+    if models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:getScale()[2] ~= jetTrailScale then
+        models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setScale(1, jetTrailScale, 1)
+        models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setScale(1, jetTrailScale, 1)
     end
 end
