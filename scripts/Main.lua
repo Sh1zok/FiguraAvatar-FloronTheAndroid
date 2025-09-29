@@ -3,14 +3,15 @@ vanilla_model.CAPE:setVisible(false)
 vanilla_model.ELYTRA:setVisible(false)
 vanilla_model.ARMOR:setVisible(false)
 
-models.model.root.Center.Torso.Neck.Head.Display
-    :setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID")
-    :setColor(0, 1, 0)
+models.model.root.Center.Torso.Neck.Head.Display:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0, 1, 0)
 models.model.root.Center.Torso.Neck.Head.Display.Display:setColor(0, 0.25, 0)
+models.model.root.Center.Torso.Jetpack.LeftEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
+models.model.root.Center.Torso.Jetpack.RightEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
 
 animations.model.actionWave:setBlendTime(5):addTags("Arms")
 animations.model.actionPointUp:setBlendTime(5):addTags("Arms")
 animations.model.actionHandshake:setBlendTime(5):addTags("Arms")
+animations.model.jetpack:setBlendTime(5)
 
 
 

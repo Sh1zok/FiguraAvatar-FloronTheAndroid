@@ -1,6 +1,6 @@
 {
   "name": "FloronTheAndroid",
-  "description": "§f[v0.5.0]",
+  "description": "§f[v0.6.0]",
   "version": "0.1.5",
   "authors": ["Sh1zok"],
   "color": "#25A000",
@@ -12,6 +12,7 @@
     "scripts.libraries.AnimationTags",
     "scripts.Pings",
     "scripts.Main",
+    "scripts.Jetpack",
     "scripts.ActionWheel"
   ]
 }
