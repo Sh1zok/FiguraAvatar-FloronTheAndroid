@@ -50,6 +50,33 @@ actionsPage:newActionList()
             onRightClick = function() pings.stopAnimations("Arms") end
         }
     })
+
+actionsPage:newActionList()
+    :title("Poses")
+    :item("minecraft:oak_stairs")
+    :hoverColor(0.25, 0.25, 0.25)
+    :actionList({
+        [1] = {
+            title = "Resting",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionResting") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        },
+        [2] = {
+            title = "Sitting on the floor",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionSittingOnTheFloor") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        },
+        [3] = {
+            title = "Lying on the back",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionLyingOnTheBack") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        },
+        [4] = {
+            title = "Lying on the side",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionLyingOnTheSide") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        },
+    })
 --#endregion
 
 
