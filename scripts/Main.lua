@@ -89,3 +89,30 @@ function events.render(_, context)
     end
 end
 --#endregion
+
+
+
+--#region Jetpack
+local isElytraEnabled = false
+function events.tick()
+    if not player:isLoaded() then return end
+
+    for index = 1, #player:getNbt().Inventory do
+        if player:getNbt().Inventory[index].Slot == 102 then isElytraEnabled = player:getNbt().Inventory[index].id == "minecraft:elytra" end
+    end
+
+    models.model.root.Center.Torso.Body.Jetpack:setVisible(isElytraEnabled)
+
+    if not isElytraEnabled then return end
+
+    animations.model.jetpack:setPlaying(player:getPose() == "FALL_FLYING")
+
+    local jetTrailScale = 0
+    if player:getPose() == "FALL_FLYING" then jetTrailScale = player:getVelocity():length() * 5 end
+
+    if models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:getScale()[2] ~= jetTrailScale then
+        models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setScale(1, jetTrailScale, 1)
+        models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setScale(1, jetTrailScale, 1)
+    end
+end
+--#endregion
