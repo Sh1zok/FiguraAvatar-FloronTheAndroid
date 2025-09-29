@@ -31,7 +31,7 @@ smoothie:newEye(models.model.root.Center.Torso.Neck.Head.Display.Eyes.LeftEye)
     :setLeftOffsetStrenght(0.67)
     :setRightOffsetStrenght(0.33)
 
-smoothie:setEyesPivot(models.model.root.Center.Torso.Neck.Head.Display.Display)
+smoothie:setEyesPivot(models.model.root.Center.Torso.Neck.Head.ViewPoint)
 --#endregion
 
 

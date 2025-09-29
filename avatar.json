@@ -1,10 +1,10 @@
 {
   "name": "FloronTheAndroid",
-  "description": "§f[v0.4.0]",
+  "description": "§f[v0.5.0]",
   "version": "0.1.5",
   "authors": ["Sh1zok"],
   "color": "#25A000",
-  "autoAnims": ["model.blink"],
+  "autoAnims": ["model.blink", "model.glitch", "model.shortCircuit"],
   "autoScripts": [
     "scripts.libraries.ActionLists",
     "scripts.libraries.VoiceChatLib",

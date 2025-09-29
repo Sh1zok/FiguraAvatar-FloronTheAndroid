@@ -7,16 +7,16 @@ action_wheel:setPage(actionsPage)
 
 --#region mainPage
 mainPage:newAction()
-    :title("Actions")
-    :item("minecraft:axolotl_bucket")
-    :hoverColor(0.25, 0.25, 0.25)
-    :onLeftClick(function() action_wheel:setPage(actionsPage) end)
-
-mainPage:newAction()
     :title("Appearance")
     :item("minecraft:leather_chestplate")
     :hoverColor(0.25, 0.25, 0.25)
     :onLeftClick(function() action_wheel:setPage(appearancePage) end)
+
+mainPage:newAction()
+    :title("Actions")
+    :item("minecraft:axolotl_bucket")
+    :hoverColor(0.25, 0.25, 0.25)
+    :onLeftClick(function() action_wheel:setPage(actionsPage) end)
 --#endregion
 
 
@@ -28,6 +28,28 @@ actionsPage:newAction()
     :color(0.5, 0, 0)
     :hoverColor(0.75, 0, 0)
     :onLeftClick(function() action_wheel:setPage(mainPage) end)
+
+actionsPage:newActionList()
+    :title("Arms")
+    :item("minecraft:piston")
+    :hoverColor(0.25, 0.25, 0.25)
+    :actionList({
+        [1] = {
+            title = "Wave",
+            onLeftClick = function() pings.playAnimation("model", "Arms", "actionWave") end,
+            onRightClick = function() pings.stopAnimations("Arms") end
+        },
+        [2] = {
+            title = "Point Up",
+            onLeftClick = function() pings.playAnimation("model", "Arms", "actionPointUp") end,
+            onRightClick = function() pings.stopAnimations("Arms") end
+        },
+        [3] = {
+            title = "Handshake",
+            onLeftClick = function() pings.playAnimation("model", "Arms", "actionHandshake") end,
+            onRightClick = function() pings.stopAnimations("Arms") end
+        }
+    })
 --#endregion
 
 
@@ -44,16 +66,25 @@ appearancePage:newActionList()
     :title("Eyes")
     :item("minecraft:ender_eye")
     :hoverColor(0.25, 0.25, 0.25)
+    :visualSize(5)
     :actionList({
-        [1] = {title = "Default", onLeftClick = function() pings.changeEyesType("default") end},
-        [2] = {title = "Fear", onLeftClick = function() pings.changeEyesType("fear") end},
-        [3] = {title = "Dots", onLeftClick = function() pings.changeEyesType("dots") end},
-        [4] = {title = "Squeezed", onLeftClick = function() pings.changeEyesType("squeezed") end},
-        [5] = {title = "Hurt", onLeftClick = function() pings.changeEyesType("hurt") end},
-        [6] = {title = "Angry", onLeftClick = function() pings.changeEyesType("angry") end},
-        [7] = {title = "Excited", onLeftClick = function() pings.changeEyesType("excited") end},
-        [8] = {title = "Happy", onLeftClick = function() pings.changeEyesType("happy") end},
-        [9] = {title = "Sad", onLeftClick = function() pings.changeEyesType("sad") end},
-        [10] = {title = "Squinted", onLeftClick = function() pings.changeEyesType("squinted") end},
+        [1] = {title = "Default", onSelect = function() pings.changeEyesType("default") end},
+        [2] = {title = "Fear", onSelect = function() pings.changeEyesType("fear") end},
+        [3] = {title = "Dots", onSelect = function() pings.changeEyesType("dots") end},
+        [4] = {title = "Squeezed", onSelect = function() pings.changeEyesType("squeezed") end},
+        [5] = {title = "Hurt", onSelect = function() pings.changeEyesType("hurt") end},
+        [6] = {title = "Angry", onSelect = function() pings.changeEyesType("angry") end},
+        [7] = {title = "Excited", onSelect = function() pings.changeEyesType("excited") end},
+        [8] = {title = "Happy", onSelect = function() pings.changeEyesType("happy") end},
+        [9] = {title = "Sad", onSelect = function() pings.changeEyesType("sad") end},
+        [10] = {title = "Squinted", onSelect = function() pings.changeEyesType("squinted") end},
+    })
+
+appearancePage:newActionList()
+    :title("Outfits")
+    :item("minecraft:chainmail_chestplate")
+    :hoverColor(0.25, 0.25, 0.25)
+    :actionList({
+        [1] = {title = "Default", onSelect = function() pings.changeOutfit("textures.Outfits.DefaultOutfit") end}
     })
 --#endregion

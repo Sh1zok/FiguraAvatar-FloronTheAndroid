@@ -25,8 +25,22 @@ local eyesTypes = {
 
 
 function pings.changeOutfit(outfitTexturePath)
-    local outfitTexture = texture[outfitTexturePath]
+    local outfitTexture = textures[outfitTexturePath]
     for _, modelPart in ipairs(outfitModelParts) do modelPart:setPrimaryTexture("CUSTOM", outfitTexture) end
 end
 
-function pings.changeEyesType(typeName) models.model.root.Center.Torso.Neck.Head.Display.Eyes:setUVPixels(eyesTypes[typeName]) end
+function pings.changeEyesType(typeName)
+    animations.model.changeEyes:setPriority(2):play()
+    models.model.root.Center.Torso.Neck.Head.Display.Eyes:setUVPixels(eyesTypes[typeName])
+end
+
+function pings.playAnimation(modelName, animationTag, animationName)
+    animations:getTags()[animationTag]:stop()
+    animations[modelName][animationName]:play()
+end
+
+function pings.stopAnimations(animationTag) animations:getTags()[animationTag]:stop() end
+
+function pings.stopAllAnimations()
+    for _, animationTag in ipairs(animations:getTags()) do animationTag:stop() end
+end
