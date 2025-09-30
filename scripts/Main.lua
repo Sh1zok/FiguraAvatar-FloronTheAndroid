@@ -15,6 +15,8 @@ animations.model.actionResting:setBlendTime(5):addTags("Poses"):setPriority(2)
 animations.model.actionSittingOnTheFloor:setBlendTime(5):addTags("Poses"):setPriority(2)
 animations.model.actionLyingOnTheBack:setBlendTime(5):addTags("Poses"):setPriority(2)
 animations.model.actionLyingOnTheSide:setBlendTime(5):addTags("Poses"):setPriority(2)
+animations.model.actionAFKing:setBlendTime(5):addTags("Poses"):setPriority(2)
+animations.model.actionSquatting:setBlendTime(5):addTags("Poses"):setPriority(2)
 animations.model.jetpack:setBlendTime(5)
 animations.model.changeEyes:setPriority(2)
 animations.model.changeMouth:setPriority(2)
@@ -102,7 +104,12 @@ function events.tick()
     if not player:isLoaded() then return end
 
     for index = 1, #player:getNbt().Inventory do
-        if player:getNbt().Inventory[index].Slot == 102 then isElytraEnabled = player:getNbt().Inventory[index].id == "minecraft:elytra" end
+        isElytraEnabled = false
+
+        if player:getNbt().Inventory[index].Slot == 102 then
+            isElytraEnabled = player:getNbt().Inventory[index].id == "minecraft:elytra"
+            break
+        end
     end
 
     models.model.root.Center.Torso.Body.Jetpack:setVisible(isElytraEnabled)
