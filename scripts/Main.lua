@@ -115,11 +115,12 @@ function events.tick()
     models.model.root.Center.Torso.Body.Jetpack:setVisible(isElytraEnabled)
 
     if not isElytraEnabled then return end
+    local playerPose = player:getPose()
 
-    animations.model.jetpack:setPlaying(player:getPose() == "FALL_FLYING")
+    animations.model.jetpack:setPlaying(playerPose == "FALL_FLYING" or playerPose == "CROUCHING")
 
     local jetTrailScale = 0
-    if player:getPose() == "FALL_FLYING" then jetTrailScale = player:getVelocity():length() * 5 end
+    if playerPose == "FALL_FLYING" or playerPose == "CROUCHING" then jetTrailScale = player:getVelocity():length() * 5 end
 
     if models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:getScale()[2] ~= jetTrailScale then
         models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setScale(1, jetTrailScale, 1)
