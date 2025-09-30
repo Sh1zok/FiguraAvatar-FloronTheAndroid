@@ -31,7 +31,7 @@ actionsPage:newAction()
     :hoverColor(0.75, 0, 0)
     :onLeftClick(function() action_wheel:setPage(mainPage) end)
 
-actionsPage:newActionList()
+ArmsActionList = actionsPage:newActionList()
     :title("Arms")
     :item("minecraft:piston")
     :color(0, 0.15, 0)
@@ -54,7 +54,7 @@ actionsPage:newActionList()
         }
     })
 
-actionsPage:newActionList()
+PosesActionList = actionsPage:newActionList()
     :title("Poses")
     :item("minecraft:oak_stairs")
     :color(0, 0.375, 0)

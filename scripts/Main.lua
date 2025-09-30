@@ -120,3 +120,18 @@ function events.tick()
     end
 end
 --#endregion
+
+
+
+--#region Keybinds
+if host:isHost() then
+    keybinds:newKeybind("Stop All Actions", "key.keyboard.keypad.0"):onPress(function() pings.stopAnimations() end)
+    keybinds:newKeybind(ArmsActionList:getActionList()[1].title, "key.keyboard.keypad.1"):onPress(function() ArmsActionList:getActionList()[1].onLeftClick() end)
+    keybinds:newKeybind(ArmsActionList:getActionList()[2].title, "key.keyboard.keypad.2"):onPress(function() ArmsActionList:getActionList()[2].onLeftClick() end)
+    keybinds:newKeybind(ArmsActionList:getActionList()[3].title, "key.keyboard.keypad.3"):onPress(function() ArmsActionList:getActionList()[3].onLeftClick() end)
+    keybinds:newKeybind(PosesActionList:getActionList()[1].title, "key.keyboard.keypad.6"):onPress(function() PosesActionList:getActionList()[1].onLeftClick() end)
+    keybinds:newKeybind(PosesActionList:getActionList()[2].title, "key.keyboard.keypad.7"):onPress(function() PosesActionList:getActionList()[2].onLeftClick() end)
+    keybinds:newKeybind(PosesActionList:getActionList()[3].title, "key.keyboard.keypad.8"):onPress(function() PosesActionList:getActionList()[3].onLeftClick() end)
+    keybinds:newKeybind(PosesActionList:getActionList()[4].title, "key.keyboard.keypad.9"):onPress(function() PosesActionList:getActionList()[4].onLeftClick() end)
+end
+--#endregion

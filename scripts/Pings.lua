@@ -51,8 +51,11 @@ function pings.playAnimation(modelName, animationTag, animationName)
     animations[modelName][animationName]:play()
 end
 
-function pings.stopAnimations(animationTag) animations:getTags()[animationTag]:stop() end
+function pings.stopAnimations(animationTag)
+    if animationTag then
+        animations:getTags()[animationTag]:stop()
+        return
+    end
 
-function pings.stopAllAnimations()
-    for _, animationTag in ipairs(animations:getTags()) do animationTag:stop() end
+    animations:stopAll()
 end
