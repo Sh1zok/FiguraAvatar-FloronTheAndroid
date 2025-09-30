@@ -80,6 +80,16 @@ PosesActionList = actionsPage:newActionList()
             onLeftClick = function() pings.playAnimation("model", "Poses", "actionLyingOnTheSide") end,
             onRightClick = function() pings.stopAnimations("Poses") end
         },
+        [5] = {
+            title = "AFKing",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionAFKing") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        },
+        [6] = {
+            title = "Squatting",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionSquatting") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        }
     })
 --#endregion
 
