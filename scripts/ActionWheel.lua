@@ -82,7 +82,7 @@ PosesActionList = actionsPage:newActionList()
         },
         [5] = {
             title = "AFKing",
-            onLeftClick = function() pings.playAnimation("model", "Poses", "actionAFKing") end,
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionAFK") end,
             onRightClick = function() pings.stopAnimations("Poses") end
         },
         [6] = {
@@ -132,6 +132,8 @@ appearancePage:newActionList()
         [1] = {title = "Default", onSelect = function() pings.changeMouthType("default") end},
         [2] = {title = "Happy", onSelect = function() pings.changeMouthType("happy") end},
         [3] = {title = "Sad", onSelect = function() pings.changeMouthType("sad") end},
+        [4] = {title = "Neutral", onSelect = function() pings.changeMouthType("neutral") end},
+        [5] = {title = "Smiling Teeth", onSelect = function() pings.changeMouthType("smilingTeeth") end},
     })
 
 appearancePage:newActionList()

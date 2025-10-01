@@ -27,6 +27,8 @@ local mouthTypes = {
     ["default"] = 0,
     ["happy"] = 8,
     ["sad"] = 16,
+    ["neutral"] = 24,
+    ["smilingTeeth"] = 32,
 }
 
 
