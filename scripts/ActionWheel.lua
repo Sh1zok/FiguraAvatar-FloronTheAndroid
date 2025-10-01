@@ -81,14 +81,22 @@ PosesActionList = actionsPage:newActionList()
             onRightClick = function() pings.stopAnimations("Poses") end
         },
         [5] = {
-            title = "AFKing",
-            onLeftClick = function() pings.playAnimation("model", "Poses", "actionAFK") end,
-            onRightClick = function() pings.stopAnimations("Poses") end
-        },
-        [6] = {
             title = "Squatting",
             onLeftClick = function() pings.playAnimation("model", "Poses", "actionSquatting") end,
             onRightClick = function() pings.stopAnimations("Poses") end
+        }
+    })
+
+HeadNDisplay = actionsPage:newActionList()
+    :title("Head & Display")
+    :item("minecraft:redstone_lamp")
+    :color(0, 0.15, 0)
+    :hoverColor(0.25, 0.5, 0.25)
+    :actionList({
+        [1] = {
+            title = "AFKing",
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionAFK") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
         }
     })
 --#endregion
