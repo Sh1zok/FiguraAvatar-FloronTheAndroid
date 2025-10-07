@@ -1,7 +1,7 @@
 --[[
     ■■■■■ Smoothie
     ■   ■ Author: Sh1zok
-    ■■■■  v0.9.0
+    ■■■■  v0.10.0
 
 MIT License
 
@@ -39,7 +39,7 @@ function smoothie:newSmoothHead(modelPart)
     -- Setting up some variables
     local interface = {}
     local headModelPart = modelPart
-    local strenght = 1
+    local strength = 1
     local speed = 1
     local tiltMultiplier = 1
     local keepVanillaPosition = true
@@ -55,7 +55,7 @@ function smoothie:newSmoothHead(modelPart)
         -- Math part
         local headRot = math.lerp(
             headRotPrevFrame,
-            ((vanilla_model.HEAD:getOriginRot() + 180) % 360 - 180) * strenght,
+            ((vanilla_model.HEAD:getOriginRot() + 180) % 360 - 180) * strength,
             math.min(8 / client:getFPS() * speed, 1)
         )
         headRot[3] = math.lerp(
@@ -75,14 +75,14 @@ function smoothie:newSmoothHead(modelPart)
     --[[
         Interface
     ]]--
-    function interface:setStrenght(value)
+    function interface:setStrength(value)
         if value == nil then value = 1 end
-        assert(type(value) == "number", "Invalid argument to function setStrenght. Expected number, but got " .. type(value))
-        strenght = value
+        assert(type(value) == "number", "Invalid argument to function setStrength. Expected number, but got " .. type(value))
+        strength = value
 
         return interface -- Returns interface for chaining
     end
-    function interface:strenght(value) return interface:setStrenght(value) end  -- Alias
+    function interface:strength(value) return interface:setStrength(value) end  -- Alias
 
     function interface:setSpeed(value)
         if value == nil then value = 1 end
@@ -123,7 +123,7 @@ function smoothie:newEye(modelPart)
     -- Setting up some variables
     local interface = {}
     local eyeModelPart = modelPart
-    local offsetStrenght = {top = 1, bottom = 1, left = 1, right = 1}
+    local offsetStrength = {top = 1, bottom = 1, left = 1, right = 1}
 
     -- Eye processor
     events.RENDER:register(function(_, context)
@@ -139,49 +139,49 @@ function smoothie:newEye(modelPart)
         eyeModelPart:setPos(
             math.clamp(
                 -math.sign(vanillaHeadRot[2]) * ((vanillaHeadRot[2] / 60) ^ 2),
-                -offsetStrenght.left,
-                offsetStrenght.right
+                -offsetStrength.left,
+                offsetStrength.right
             ),
             math.clamp(
                 math.sign(vanillaHeadRot[1]) * ((vanillaHeadRot[1] / 125) ^ 2),
-                -offsetStrenght.bottom,
-                offsetStrenght.top
+                -offsetStrength.bottom,
+                offsetStrength.top
             ),
             0
         )
     end, "Smoothie.EyeProcessor")
 
-    function interface:setTopOffsetStrenght(value)
-        assert(type(value) == "number", "Invalid argument to function setTopOffsetStrenght. Expected number, but got " .. type(value))
-        offsetStrenght.top = value
+    function interface:setTopOffsetStrength(value)
+        assert(type(value) == "number", "Invalid argument to function setTopOffsetStrength. Expected number, but got " .. type(value))
+        offsetStrength.top = value
 
         return interface
     end
-    function interface:topOffsetStrenght(value) return interface:setTopOffsetStrenght(value) end -- Alias
+    function interface:topOffsetStrength(value) return interface:setTopOffsetStrength(value) end -- Alias
 
-    function interface:setBottomOffsetStrenght(value)
-        assert(type(value) == "number", "Invalid argument to function setBottomOffsetStrenght. Expected number, but got " .. type(value))
-        offsetStrenght.bottom = value
-
-        return interface
-    end
-    function interface:bottomOffsetStrenght(value) return interface:setBottomOffsetStrenght(value) end -- Alias
-
-    function interface:setLeftOffsetStrenght(value)
-        assert(type(value) == "number", "Invalid argument to function setLeftOffsetStrenght. Expected number, but got " .. type(value))
-        offsetStrenght.left = value
+    function interface:setBottomOffsetStrength(value)
+        assert(type(value) == "number", "Invalid argument to function setBottomOffsetStrength. Expected number, but got " .. type(value))
+        offsetStrength.bottom = value
 
         return interface
     end
-    function interface:leftOffsetStrenght(value) return interface:setLeftOffsetStrenght(value) end -- Alias
+    function interface:bottomOffsetStrength(value) return interface:setBottomOffsetStrength(value) end -- Alias
 
-    function interface:setRightOffsetStrenght(value)
-        assert(type(value) == "number", "Invalid argument to function setRightOffsetStrenght. Expected number, but got " .. type(value))
-        offsetStrenght.right = value
+    function interface:setLeftOffsetStrength(value)
+        assert(type(value) == "number", "Invalid argument to function setLeftOffsetStrength. Expected number, but got " .. type(value))
+        offsetStrength.left = value
 
         return interface
     end
-    function interface:rightOffsetStrenght(value) return interface:setRightOffsetStrenght(value) end -- Alias
+    function interface:leftOffsetStrength(value) return interface:setLeftOffsetStrength(value) end -- Alias
+
+    function interface:setRightOffsetStrength(value)
+        assert(type(value) == "number", "Invalid argument to function setRightOffsetStrength. Expected number, but got " .. type(value))
+        offsetStrength.right = value
+
+        return interface
+    end
+    function interface:rightOffsetStrength(value) return interface:setRightOffsetStrength(value) end -- Alias
 
     return interface
 end
@@ -375,10 +375,8 @@ function smoothie:setEyesPivot(modelPart)
     -- Checking the validity of the parameter
     assert(type(modelPart) == "ModelPart", "Invalid argument to function setEyesPivot. Expected ModelPart, but got " .. type(modelPart))
 
-    local interface = {}
     local eyesPivotModelPart = modelPart
     local eyesOffset = vec(0, 0, 0)
-    local speed = 10
 
     events.POST_RENDER:remove("Smoothie.eyesPivotProcessor")
     events.POST_RENDER:register(function()
@@ -388,20 +386,10 @@ function smoothie:setEyesPivot(modelPart)
         newEyesOffset = newEyesOffset + vanilla_model.HEAD:getOriginPos() / 16
         if newEyesOffset:length() ~= newEyesOffset:length() then return end -- Cathing the NaN
 
-        eyesOffset = math.lerp(eyesOffset, newEyesOffset, math.min(speed / client:getFPS(), 1))
+        eyesOffset = newEyesOffset
         renderer:offsetCameraPivot(eyesOffset)
         renderer:setEyeOffset(eyesOffset)
     end, "Smoothie.eyesPivotProcessor")
-
-    function interface:setSpeed(value)
-        assert(type(value) == "number", "Invalid argument to function setSpeed. Expected number, but got " .. type(value))
-        speed = value
-
-        return interface
-    end
-    function interface:speed(value) return interface:setSpeed(value) end -- Alias
-
-    return interface
 end
 
 return smoothie
