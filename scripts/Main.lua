@@ -122,10 +122,9 @@ function events.tick()
     local jetTrailScale = 0
     if playerPose == "FALL_FLYING" or playerPose == "CROUCHING" then jetTrailScale = player:getVelocity():length() * 5 end
 
-    if models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:getScale()[2] ~= jetTrailScale then
-        models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setScale(1, jetTrailScale, 1)
-        models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setScale(1, jetTrailScale, 1)
-    end
+    if models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:getScale()[2] == jetTrailScale then return end
+    models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setScale(1, math.max(jetTrailScale + math.random(-100, 100) / 100 * jetTrailScale, 0), 1)
+    models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setScale(1, math.max(jetTrailScale + math.random(-100, 100) / 100 * jetTrailScale, 0), 1)
 end
 --#endregion
 
