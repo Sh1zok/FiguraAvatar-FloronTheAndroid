@@ -17,6 +17,7 @@ animations.model.actionLyingOnTheBack:setBlendTime(5):addTags("Poses"):setPriori
 animations.model.actionLyingOnTheSide:setBlendTime(5):addTags("Poses"):setPriority(2)
 animations.model.actionAFK:setBlendTime(5):addTags("HeadNDisplay"):setPriority(2)
 animations.model.actionSquatting:setBlendTime(5):addTags("Poses"):setPriority(2)
+animations.model.actionBreakdance:setBlendTime(5):addTags("Poses"):setPriority(2)
 animations.model.jetpack:setBlendTime(5)
 animations.model.changeEyes:setPriority(2)
 animations.model.changeMouth:setPriority(2)

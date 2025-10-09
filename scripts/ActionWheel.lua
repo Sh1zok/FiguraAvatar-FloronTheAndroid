@@ -84,7 +84,12 @@ PosesActionList = actionsPage:newActionList()
             title = "Squatting",
             onLeftClick = function() pings.playAnimation("model", "Poses", "actionSquatting") end,
             onRightClick = function() pings.stopAnimations("Poses") end
-        }
+        },
+        [6] = {
+            title = "Breakdance",
+            onLeftClick = function() pings.playAnimation("model", "Poses", "actionBreakdance") end,
+            onRightClick = function() pings.stopAnimations("Poses") end
+        },
     })
 
 HeadNDisplay = actionsPage:newActionList()
