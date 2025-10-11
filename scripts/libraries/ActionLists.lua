@@ -1,7 +1,7 @@
 --[[
     ■■■■■ ActionLists
     ■   ■ Author: @sh1zok_was_here
-    ■■■■  v1.4.3
+    ■■■■  v1.4.4
 
 MIT License
 
@@ -85,9 +85,9 @@ function pagesCustomMethods:newActionList()
                 if index == selectedActionIndex then
                     table.insert(title, {text = "\n " .. "=> ", color = "#" .. vectors.rgbToHex(selectedActionColor)})
                     if type(value.title) == "table" then
-                        table.insert(title, value.title)
+                        table.insert(title, value.activeTitle or value.title)
                     else
-                        table.insert(title, {text = value.title, color = "#" .. vectors.rgbToHex(selectedActionColor)})
+                        table.insert(title, {text = value.activeTitle or value.title, color = "#" .. vectors.rgbToHex(selectedActionColor)})
                     end
                 else
                     table.insert(title, {text = "\n " .. index .. ". ", color = "#" .. vectors.rgbToHex(actionListColor)})
