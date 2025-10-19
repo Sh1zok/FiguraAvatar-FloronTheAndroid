@@ -1,7 +1,7 @@
 --[[
     ■■■■■ ActionLists
     ■   ■ Author: @sh1zok_was_here
-    ■■■■  v1.4.4
+    ■■■■  v1.5.0
 
 MIT License
 
@@ -59,6 +59,7 @@ function pagesCustomMethods:newActionList()
             onRightClick = function() host:setActionbar("Sh1zok was here ;3") end -- Easter egg :p
         }
     }
+    local globalOnLeftClick, globalOnRightClick, globalOnScroll
 
     -- New title for button(userdata) maker
     local function makeNewTitle()
@@ -317,6 +318,35 @@ function pagesCustomMethods:newActionList()
 
 
     --[[
+        Interface setters: OnAction methods
+    ]]--
+    function interface:setOnLeftClick(method)
+        assert(type(method) == "function", "Invalid argument 1 to function setOnLeftClick. Expected function, but got " .. type(method))
+        globalOnLeftClick = method
+
+        return interface -- Returns self for chaining
+    end
+    function interface:onLeftClick(method) return interface:setOnLeftClick(method) end -- Alias
+
+    function interface:setOnRightClick(method)
+        assert(type(method) == "function", "Invalid argument 1 to function setOnRightClick. Expected function, but got " .. type(method))
+        globalOnRightClick = method
+
+        return interface -- Returns self for chaining
+    end
+    function interface:onRightClick(method) return interface:setOnRightClick(method) end -- Alias
+
+    function interface:setOnScroll(method)
+        assert(type(method) == "function", "Invalid argument 1 to function setOnScroll. Expected function, but got " .. type(method))
+        globalOnScroll = method
+
+        return interface -- Returns self for chaining
+    end
+    function interface:onScroll(method) return interface:setOnScroll(method) end -- Alias
+
+
+
+    --[[
         Interface getters
     ]]--
     function interface:getUserdata() return userdata end
@@ -334,16 +364,27 @@ function pagesCustomMethods:newActionList()
     --[[
         Button(userdata) custom logic
     ]]--
-    userdata:setOnLeftClick(function() if actionList[selectedActionIndex] and type(actionList[selectedActionIndex].onLeftClick) == "function" then actionList[selectedActionIndex]:onLeftClick() end end)
-    userdata:setOnRightClick(function() if actionList[selectedActionIndex] and type(actionList[selectedActionIndex].onRightClick) == "function" then actionList[selectedActionIndex]:onRightClick() end end)
+    userdata:setOnLeftClick(function()
+        if actionList[selectedActionIndex].onLeftClick and actionList[selectedActionIndex].onLeftClick then actionList[selectedActionIndex]:onLeftClick() end
+        if globalOnLeftClick then globalOnLeftClick() end -- Calling a global onLeftClick method if it is defined
+    end)
+    userdata:setOnRightClick(function()
+        if actionList[selectedActionIndex] and actionList[selectedActionIndex].onRightClick then actionList[selectedActionIndex]:onRightClick() end
+        if globalOnRightClick then globalOnRightClick() end -- Calling a global onRightClick method if it is defined
+    end)
     userdata:setOnScroll(function(scrollDirection)
-        if not actionList[selectedActionIndex] then return end -- Prevents errors when the list is REALLY empty
+        if not actionList[selectedActionIndex] then -- Prevents errors when the list is REALLY empty
+            if globalOnScroll then globalOnScroll(scrollDirection, nil) end -- Calling a global onScroll method if it is defined
+            return
+        end
 
         if scrollDirection > 0 and selectedActionIndex <= 1 then selectedActionIndex = #actionList + 1 end -- Preventing list out of bounds past the beginning of a list
         if scrollDirection < 0 and selectedActionIndex >= #actionList then selectedActionIndex = 0 end -- Preventing list out of bounds past end of list
         selectedActionIndex = selectedActionIndex - scrollDirection
 
-        if type(actionList[selectedActionIndex].onSelect) == "function" then actionList[selectedActionIndex]:onSelect(scrollDirection) end
+        if globalOnScroll then globalOnScroll(scrollDirection, selectedActionIndex) end -- Calling a global onScroll method if it is defined
+
+        if actionList[selectedActionIndex].onSelect then actionList[selectedActionIndex]:onSelect(scrollDirection) end
 
         if actionList[selectedActionIndex].color or defaultColor then userdata:setColor(actionList[selectedActionIndex].color or defaultColor) end
         if actionList[selectedActionIndex].hoverColor or defaultHoverColor then userdata:setHoverColor(actionList[selectedActionIndex].hoverColor or defaultHoverColor) end

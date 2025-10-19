@@ -1,6 +1,6 @@
 {
   "name": "FloronTheAndroid",
-  "description": "§f[v0.13.3]",
+  "description": "§f[v1.0.0]",
   "version": "0.1.5",
   "authors": ["Sh1zok"],
   "color": "#25A000",
@@ -8,10 +8,9 @@
   "autoScripts": [
     "scripts.libraries.ActionLists",
     "scripts.libraries.VoiceChatLib",
-    "scripts.libraries.GSAnimBlend",
     "scripts.libraries.AnimationTags",
     "scripts.Pings",
     "scripts.ActionWheel",
-    "scripts.Main"
+    "scripts.General"
   ]
 }

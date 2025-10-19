@@ -2,25 +2,39 @@ vanilla_model.PLAYER:setVisible(false)
 vanilla_model.CAPE:setVisible(false)
 vanilla_model.ELYTRA:setVisible(false)
 vanilla_model.ARMOR:setVisible(false)
+vanilla_model.HELMET_ITEM:setVisible(true)
+vanilla_model.HELMET_HEAD:setVisible(true)
+vanilla_model.HELMET_HAT:setVisible(true)
+
+
 
 models.model.root.Center.Torso.Neck.Head.Display:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0, 1, 0)
-models.model.root.Center.Torso.Neck.Head.Display.Display:setColor(0, 0.25, 0)
-models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
-models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0.75, 1, 0)
+models.model.root.Center.Torso.Neck.Head.Display.Display:setColor(0.25)
+models.model.root.Center.Torso.Body.Jetpack.LeftEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0, 1, 0)
+models.model.root.Center.Torso.Body.Jetpack.RightEngine.Trail:setPrimaryRenderType("CUTOUT_EMISSIVE_SOLID"):setColor(0, 1, 0)
 
-animations.model.actionWave:setBlendTime(5):addTags("Arms")
-animations.model.actionPointUp:setBlendTime(5):addTags("Arms")
-animations.model.actionHandshake:setBlendTime(5):addTags("Arms")
-animations.model.actionResting:setBlendTime(5):addTags("Poses"):setPriority(2)
-animations.model.actionSittingOnTheFloor:setBlendTime(5):addTags("Poses"):setPriority(2)
-animations.model.actionLyingOnTheBack:setBlendTime(5):addTags("Poses"):setPriority(2)
-animations.model.actionLyingOnTheSide:setBlendTime(5):addTags("Poses"):setPriority(2)
-animations.model.actionAFK:setBlendTime(5):addTags("HeadNDisplay"):setPriority(2)
-animations.model.actionSquatting:setBlendTime(5):addTags("Poses"):setPriority(2)
-animations.model.actionBreakdance:setBlendTime(5):addTags("Poses"):setPriority(2)
-animations.model.jetpack:setBlendTime(5)
-animations.model.changeEyes:setPriority(2)
-animations.model.changeMouth:setPriority(2)
+
+
+--#region Animations
+animations.model.actionWave:addTags("Arms")
+animations.model.actionPointUp:addTags("Arms")
+animations.model.actionHandshake:addTags("Arms")
+animations.model.actionCrossedArms:addTags("Arms")
+animations.model.actionResting:addTags("Poses")
+animations.model.actionSittingOnTheFloor:addTags("Poses")
+animations.model.actionLyingOnTheBack:addTags("Poses")
+animations.model.actionLyingOnTheSide:addTags("Poses")
+animations.model.actionSquatting:addTags("Poses")
+animations.model.actionBreakdance:addTags("Poses")
+animations.model.actionAFK:addTags("HeadNDisplay")
+animations.model.actionHappy:addTags("HeadNDisplay")
+animations.model.actionAngry:addTags("HeadNDisplay")
+animations.model.actionSad:addTags("HeadNDisplay")
+animations.model.actionFear:addTags("HeadNDisplay")
+animations.model.actionKitty:addTags("HeadNDisplay")
+animations.model.actionSussy:addTags("HeadNDisplay")
+animations.model.actionWink:addTags("HeadNDisplay")
+--#endregion
 
 
 
@@ -133,13 +147,13 @@ end
 
 --#region Keybinds
 if host:isHost() then
-    keybinds:newKeybind("Stop All Actions", "key.keyboard.keypad.0"):onPress(function() pings.stopAnimations() end)
-    keybinds:newKeybind(ArmsActionList:getActionList()[1].title, "key.keyboard.keypad.1"):onPress(function() ArmsActionList:getActionList()[1].onLeftClick() end)
-    keybinds:newKeybind(ArmsActionList:getActionList()[2].title, "key.keyboard.keypad.2"):onPress(function() ArmsActionList:getActionList()[2].onLeftClick() end)
-    keybinds:newKeybind(ArmsActionList:getActionList()[3].title, "key.keyboard.keypad.3"):onPress(function() ArmsActionList:getActionList()[3].onLeftClick() end)
-    keybinds:newKeybind(PosesActionList:getActionList()[1].title, "key.keyboard.keypad.6"):onPress(function() PosesActionList:getActionList()[1].onLeftClick() end)
-    keybinds:newKeybind(PosesActionList:getActionList()[2].title, "key.keyboard.keypad.7"):onPress(function() PosesActionList:getActionList()[2].onLeftClick() end)
-    keybinds:newKeybind(PosesActionList:getActionList()[3].title, "key.keyboard.keypad.8"):onPress(function() PosesActionList:getActionList()[3].onLeftClick() end)
-    keybinds:newKeybind(PosesActionList:getActionList()[4].title, "key.keyboard.keypad.9"):onPress(function() PosesActionList:getActionList()[4].onLeftClick() end)
+    keybinds:newKeybind("Stop All Emotions", "key.keyboard.keypad.0"):onPress(function() pings.stopAnimations("HeadNDisplay") end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[1].title.text, "key.keyboard.keypad.1"):onPress(function() HeadNDisplay:getActionList()[1].onLeftClick() end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[2].title.text, "key.keyboard.keypad.2"):onPress(function() HeadNDisplay:getActionList()[2].onLeftClick() end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[3].title.text, "key.keyboard.keypad.3"):onPress(function() HeadNDisplay:getActionList()[3].onLeftClick() end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[4].title.text, "key.keyboard.keypad.4"):onPress(function() HeadNDisplay:getActionList()[4].onLeftClick() end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[5].title.text, "key.keyboard.keypad.5"):onPress(function() HeadNDisplay:getActionList()[5].onLeftClick() end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[6].title.text, "key.keyboard.keypad.6"):onPress(function() HeadNDisplay:getActionList()[6].onLeftClick() end)
+    keybinds:newKeybind(HeadNDisplay:getActionList()[7].title.text, "key.keyboard.keypad.7"):onPress(function() HeadNDisplay:getActionList()[7].onLeftClick() end)
 end
 --#endregion

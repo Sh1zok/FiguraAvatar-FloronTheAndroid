@@ -11,14 +11,20 @@ mainPage:newAction()
     :item("minecraft:leather_chestplate")
     :color(0, 0.15, 0)
     :hoverColor(0.25, 0.5, 0.25)
-    :onLeftClick(function() action_wheel:setPage(appearancePage) end)
+    :onLeftClick(function()
+        action_wheel:setPage(appearancePage)
+        sounds:playSound("block.calcite.place", player:getPos())
+    end)
 
 mainPage:newAction()
     :title("Actions")
     :item("minecraft:axolotl_bucket")
     :color(0, 0.375, 0)
     :hoverColor(0.25, 0.725, 0.25)
-    :onLeftClick(function() action_wheel:setPage(actionsPage) end)
+    :onLeftClick(function()
+        action_wheel:setPage(actionsPage)
+        sounds:playSound("block.calcite.place", player:getPos())
+    end)
 --#endregion
 
 
@@ -29,7 +35,10 @@ actionsPage:newAction()
     :item("minecraft:structure_void")
     :color(0.5, 0, 0)
     :hoverColor(0.75, 0, 0)
-    :onLeftClick(function() action_wheel:setPage(mainPage) end)
+    :onLeftClick(function()
+        action_wheel:setPage(mainPage)
+        sounds:playSound("block.calcite.place", player:getPos())
+    end)
 
 ArmsActionList = actionsPage:newActionList()
     :title("Arms")
@@ -51,8 +60,16 @@ ArmsActionList = actionsPage:newActionList()
             title = "Handshake",
             onLeftClick = function() pings.playAnimation("model", "Arms", "actionHandshake") end,
             onRightClick = function() pings.stopAnimations("Arms") end
+        },
+        [4] = {
+            title = "Cross arms",
+            onLeftClick = function() pings.playAnimation("model", "Arms", "actionCrossedArms") end,
+            onRightClick = function() pings.stopAnimations("Arms") end
         }
     })
+    :onLeftClick(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 0.6, false) end)
+    :onRightClick(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 0.5, false) end)
+    :onScroll(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 2, false) end)
 
 PosesActionList = actionsPage:newActionList()
     :title("Poses")
@@ -91,6 +108,9 @@ PosesActionList = actionsPage:newActionList()
             onRightClick = function() pings.stopAnimations("Poses") end
         },
     })
+    :onLeftClick(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 0.6, false) end)
+    :onRightClick(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 0.5, false) end)
+    :onScroll(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 2, false) end)
 
 HeadNDisplay = actionsPage:newActionList()
     :title("Head & Display")
@@ -99,11 +119,54 @@ HeadNDisplay = actionsPage:newActionList()
     :hoverColor(0.25, 0.5, 0.25)
     :actionList({
         [1] = {
+            title = {text = "Happy", color = "#AAAA00"},
+            activeTitle = {text = "Happy (^◡^)", color = "#FFFF00"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionHappy") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [2] = {
+            title = {text = "Angry", color = "#AA1A1A"},
+            activeTitle = {text = "Angry (╯°□°）╯︵ ┻━┻", color = "#FF3F3F"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionAngry") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [3] = {
+            title = {text = "Sad", color = "#4A4AAA"},
+            activeTitle = {text = "Sad (T⌒T)", color = "#7F7FFF"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionSad") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [4] = {
+            title = {text = "Fear", color = "#7A7AAA"},
+            activeTitle = {text = "Fear (@_@;)", color = "#BFBFFF"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionFear") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [5] = {
+            title = {text = "Kitty", color = "#AA5353"},
+            activeTitle = {text = "Kitty (^w^)", color = "#FFA5A5"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionKitty") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [6] = {
+            title = {text = "Sussy", color = "#444444"},
+            activeTitle = {text = "Sussy (Ō_ō)", color = "#666666"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionSussy") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [7] = {
+            title = {text = "Wink", color = "#444444"},
+            activeTitle = {text = "Wink (0_<)", color = "#666666"},
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionWink") end,
+            onRightClick = function() pings.stopAnimations("HeadNDisplay") end
+        },
+        [8] = {
             title = "AFKing",
             onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionAFK") end,
             onRightClick = function() pings.stopAnimations("HeadNDisplay") end
         }
     })
+    :onScroll(function() sounds:playSound("block.lever.click", player:getPos(), 0.25, 2, false) end)
 --#endregion
 
 
@@ -114,40 +177,10 @@ appearancePage:newAction()
     :item("minecraft:structure_void")
     :color(0.5, 0, 0)
     :hoverColor(0.75, 0, 0)
-    :onLeftClick(function() action_wheel:setPage(mainPage) end)
-
-appearancePage:newActionList()
-    :title("Eyes")
-    :item("minecraft:ender_eye")
-    :color(0, 0.15, 0)
-    :hoverColor(0.25, 0.5, 0.25)
-    :visualSize(9)
-    :actionList({
-        [1] = {title = "Default", onSelect = function() pings.changeEyesType("default") end},
-        [2] = {title = "Fear", onSelect = function() pings.changeEyesType("fear") end},
-        [3] = {title = "Dots", onSelect = function() pings.changeEyesType("dots") end},
-        [4] = {title = "Squeezed", onSelect = function() pings.changeEyesType("squeezed") end},
-        [5] = {title = "Hurt", onSelect = function() pings.changeEyesType("hurt") end},
-        [6] = {title = "Angry", onSelect = function() pings.changeEyesType("angry") end},
-        [7] = {title = "Excited", onSelect = function() pings.changeEyesType("excited") end},
-        [8] = {title = "Happy", onSelect = function() pings.changeEyesType("happy") end},
-        [9] = {title = "Sad", onSelect = function() pings.changeEyesType("sad") end},
-        [10] = {title = "Squinted", onSelect = function() pings.changeEyesType("squinted") end},
-    })
-
-appearancePage:newActionList()
-    :title("Mouth")
-    :item("minecraft:note_block")
-    :color(0, 0.375, 0)
-    :hoverColor(0.25, 0.725, 0.25)
-    :visualSize(9)
-    :actionList({
-        [1] = {title = "Default", onSelect = function() pings.changeMouthType("default") end},
-        [2] = {title = "Happy", onSelect = function() pings.changeMouthType("happy") end},
-        [3] = {title = "Sad", onSelect = function() pings.changeMouthType("sad") end},
-        [4] = {title = "Neutral", onSelect = function() pings.changeMouthType("neutral") end},
-        [5] = {title = "Smiling Teeth", onSelect = function() pings.changeMouthType("smilingTeeth") end},
-    })
+    :onLeftClick(function()
+        action_wheel:setPage(mainPage)
+        sounds:playSound("block.calcite.place", player:getPos())
+    end)
 
 appearancePage:newActionList()
     :title("Outfits")
@@ -155,6 +188,7 @@ appearancePage:newActionList()
     :color(0, 0.15, 0)
     :hoverColor(0.25, 0.5, 0.25)
     :actionList({
-        [1] = {title = "Default", onSelect = function() pings.changeOutfit("textures.Outfits.DefaultOutfit") end}
+        [1] = {title = "Default", onSelect = function() pings.changeOutfit("textures.Outfits.DefaultOutfit") end},
+        [2] = {title = "Formal Suit", onSelect = function() pings.changeOutfit("textures.Outfits.FormalSuit") end}
     })
 --#endregion

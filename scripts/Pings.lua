@@ -29,23 +29,16 @@ local mouthTypes = {
     ["sad"] = 16,
     ["neutral"] = 24,
     ["smilingTeeth"] = 32,
+    ["kitty"] = 40,
 }
 
 
 
 function pings.changeOutfit(outfitTexturePath)
+    sounds:playSound("block.wool.hit", player:getPos(), 0.5, 0.5, false)
+
     local outfitTexture = textures[outfitTexturePath]
     for _, modelPart in ipairs(outfitModelParts) do modelPart:setPrimaryTexture("CUSTOM", outfitTexture) end
-end
-
-function pings.changeEyesType(typeName)
-    animations.model.changeEyes:play()
-    models.model.root.Center.Torso.Neck.Head.Display.Eyes:setUVPixels(eyesTypes[typeName])
-end
-
-function pings.changeMouthType(typeName)
-    animations.model.changeMouth:play()
-    models.model.root.Center.Torso.Neck.Head.Display.Mouth:setUVPixels(mouthTypes[typeName], models.model.root.Center.Torso.Neck.Head.Display.Mouth:getUVPixels()[2])
 end
 
 function pings.playAnimation(modelName, animationTag, animationName)

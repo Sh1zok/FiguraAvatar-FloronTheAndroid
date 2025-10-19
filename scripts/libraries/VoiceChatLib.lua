@@ -1,7 +1,7 @@
 --[[
     ■■■■■ VoiceChatLib
     ■   ■ Author: Sh1zok
-    ■■■■  v1.0.1
+    ■■■■  v1.0.2
 
 MIT License
 
@@ -91,7 +91,7 @@ end
 --[[
     Host-only stuff
 ]]--
-if not host:isHost() then return end
+if not host:isHost() or not client:isModLoaded("figurasvc") then return end
 
 -- Reading raw audio stream
 function events.host_microphone(audio) voiceChat.get.rawAudioStream = audio end

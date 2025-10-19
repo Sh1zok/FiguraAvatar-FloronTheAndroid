@@ -1,7 +1,7 @@
 --[[
     ■■■■■ Smoothie
     ■   ■ Author: Sh1zok
-    ■■■■  v0.10.0
+    ■■■■  v0.10.1
 
 MIT License
 
@@ -46,22 +46,21 @@ function smoothie:newSmoothHead(modelPart)
     local headRotPrevFrame = vec(0, 0, 0)
 
     -- Head rotation processor
-    events.RENDER:register(function(_, context)
+    events.RENDER:register(function(delta, context)
         -- Checking the need to process the head rotation
         if not player:isLoaded() then return end
         if not (context == "RENDER" or context == "FIRST_PERSON" or context == "MINECRAFT_GUI") then return end
-        if headModelParts == {} then return end
 
         -- Math part
         local headRot = math.lerp(
             headRotPrevFrame,
             ((vanilla_model.HEAD:getOriginRot() + 180) % 360 - 180) * strength,
-            math.min(8 / client:getFPS() * speed, 1)
+            math.min(8 / math.max(client:getFPS(), 1) * speed, 1)
         )
         headRot[3] = math.lerp(
             headRotPrevFrame[3],
             2.5 * ((vanilla_model.HEAD:getOriginRot() + 180) % 360 - 180)[2] / 50 * tiltMultiplier,
-            math.min(8 / client:getFPS() * speed, 1)
+            math.min(8 / math.max(client:getFPS(), 1) * speed, 1)
         )
 
         -- Applying new head rotation
@@ -201,7 +200,7 @@ function smoothie:newEar(modelPart)
     local rotationLimits = {top = 10, bottom = 10, left = 45, right = 45}
 
     -- Ear rotation logic
-    events.RENDER:register(function()
+    events.RENDER:register(function(delta)
         -- Calculating the difference in head rotation
         local headRotationAngle = (vanilla_model.HEAD:getOriginRot() + 180) % 360 - 180
         headRotationDelta = headRotationDelta + (prevHeadRotationAngle - headRotationAngle)
@@ -210,11 +209,11 @@ function smoothie:newEar(modelPart)
         prevHeadRotationAngle = headRotationAngle
 
         -- Calculation the speed of rotation and the rotation of the ear itself
-        earRotationVelocity = earRotationVelocity + -(speed * (earModelPart:getOffsetRot() - headRotationDelta) + math.sqrt(speed * 20) * bouncy * earRotationVelocity) / client:getFPS()
-        earModelPart:setOffsetRot(earModelPart:getOffsetRot() + earRotationVelocity / client:getFPS())
+        earRotationVelocity = earRotationVelocity + -(speed * (earModelPart:getOffsetRot() - headRotationDelta) + math.sqrt(speed * 20) * bouncy * earRotationVelocity) / math.max(client:getFPS(), 1)
+        earModelPart:setOffsetRot(earModelPart:getOffsetRot() + earRotationVelocity / math.max(client:getFPS(), 1))
 
         -- Soft reduction of head deviation to zeros
-        headRotationDelta = math.lerp(headRotationDelta, vec(0, 0, 0), 5 / client:getFPS())
+        headRotationDelta = math.lerp(headRotationDelta, vec(0, 0, 0), 5 / math.max(client:getFPS(), 1))
     end, "Smoothie.earProcessor")
 
     function interface:setBouncy(value)
@@ -288,7 +287,7 @@ function smoothie:newPhysicalBody(modelPart)
     if player:isLoaded() then bodyYaw, prevBodyYaw = player:getBodyYaw(), player:getBodyYaw() end
 
     -- Physical body processor
-    events.RENDER:register(function()
+    events.RENDER:register(function(delta)
         if not player:isLoaded() then return end
 
         -- Calculating the difference in body yaw
@@ -305,8 +304,8 @@ function smoothie:newPhysicalBody(modelPart)
         local deltas = vec(-playerVerticalVelocityDelta * 100, bodyYawDelta, bodyYawDelta)
 
         -- Calculation the physical body rotation
-        physBodyRotationVelocity = physBodyRotationVelocity + -(speed * (physicalModelPart:getOffsetRot() - deltas) + math.sqrt(speed * bouncy) / 2 * physBodyRotationVelocity / bouncy) / client:getFPS()
-        local physBodyRotation = physicalModelPart:getOffsetRot() + physBodyRotationVelocity / client:getFPS()
+        physBodyRotationVelocity = physBodyRotationVelocity + -(speed * (physicalModelPart:getOffsetRot() - deltas) + math.sqrt(speed * bouncy) / 2 * math.max(physBodyRotationVelocity / bouncy, 0.01)) / math.max(client:getFPS(), 1)
+        local physBodyRotation = physicalModelPart:getOffsetRot() + physBodyRotationVelocity / math.max(client:getFPS(), 1)
         physBodyRotation[1] = math.clamp(physBodyRotation[1], -rotationLimits.bottom, rotationLimits.top)
         physBodyRotation[2] = math.clamp(physBodyRotation[2], -rotationLimits.left, rotationLimits.right)
         physBodyRotation[3] = math.clamp(physBodyRotation[3], -rotationLimits.left, rotationLimits.right)
@@ -314,8 +313,8 @@ function smoothie:newPhysicalBody(modelPart)
         physicalModelPart:setOffsetRot(physBodyRotation)
 
         -- Soft reduction of deltas to zeros
-        playerVerticalVelocityDelta = math.lerp(playerVerticalVelocityDelta, 0, 15 / client:getFPS())
-        bodyYawDelta = math.lerp(bodyYawDelta, 0, 15 / client:getFPS())
+        playerVerticalVelocityDelta = math.lerp(playerVerticalVelocityDelta, 0, 15 / math.max(client:getFPS(), 1))
+        bodyYawDelta = math.lerp(bodyYawDelta, 0, 15 / math.max(client:getFPS(), 1))
     end, "Smoothie.physicalBodyProcessor")
 
     function interface:setSpeed(value)
