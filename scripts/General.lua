@@ -126,6 +126,7 @@ function events.tick()
             break
         end
     end
+    if #player:getNbt().Inventory == 0 then isElytraEnabled = false end
 
     models.model.root.Center.Torso.Body.Jetpack:setVisible(isElytraEnabled)
 
