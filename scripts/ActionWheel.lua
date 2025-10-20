@@ -157,7 +157,7 @@ HeadNDisplay = actionsPage:newActionList()
         [7] = {
             title = {text = "Wink", color = "#444444"},
             activeTitle = {text = "Wink (0_<)", color = "#666666"},
-            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionWink") end,
+            onLeftClick = function() pings.playAnimation("model", "HeadNDisplay", "actionWink", true) end,
             onRightClick = function() pings.stopAnimations("HeadNDisplay") end
         },
         [8] = {

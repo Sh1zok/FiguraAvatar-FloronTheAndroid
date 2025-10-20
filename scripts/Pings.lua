@@ -41,8 +41,8 @@ function pings.changeOutfit(outfitTexturePath)
     for _, modelPart in ipairs(outfitModelParts) do modelPart:setPrimaryTexture("CUSTOM", outfitTexture) end
 end
 
-function pings.playAnimation(modelName, animationTag, animationName)
-    animations:getTags()[animationTag]:stop()
+function pings.playAnimation(modelName, animationTag, animationName, shouldntStopOtherAnimations)
+    if not shouldntStopOtherAnimations then animations:getTags()[animationTag]:stop() end
     animations[modelName][animationName]:play()
 end
 
